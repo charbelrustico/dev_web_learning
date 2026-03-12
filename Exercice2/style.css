@@ -1,0 +1,567 @@
+/* ============================================================
+       Page de Liste Style
+============================================================ */
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-color: white;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px;
+    border-color: white;
+
+}
+
+.list-footer {
+    margin-top: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: -10px;
+    
+}
+/* ============================================================
+    MES VARIABLES CSS AVEC MA PALETTE Préféré  
+============================================================ */
+    :root {
+      /* --- Couleurs principales --- */
+      --navy:        #0a0f1e;   
+      --navy-light:  #112240;   
+      --navy-mid:    #0d1b35;   
+
+      --blue:        #0d5fe1;   /* accent principal */
+      --blue-hover:  #195ac2;   /* version légèrement plus sombre pour les hover */
+
+      --white:       #ccd6f6;   /* texte principal */
+      --slate:       #8892b0;   /* texte secondaire, sous-titres */
+      --slate-dark:  #464b56;   /* séparateurs, placeholders */
+
+      /* --- Typographie --- */
+      --font-body:   'Montserrat', monospace;    /* corps du texte → vibe "dev" */
+      --font-title:  'Poppins', sans-serif;        /* titres → géométrique, moderne */
+
+      /* --- Espacements --- */
+      --gap-sm:    0.5rem;
+      --gap-md:    1rem;
+      --gap-lg:    2rem;
+      --gap-xl:    4rem;
+
+      /* --- Largeurs --- */
+      --sidebar-w: 340px;   /* largeur fixe de la sidebar */
+
+      /* --- Transitions globales --- */
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET le navigateur
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* padding inclus dans la largeur — plus intuitif */
+    }
+
+    html {
+      scroll-behavior: smooth; /* défilement doux pour les ancres #section */
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Retirer le style par défaut des listes */
+    ul, ol { list-style: none; }
+
+    /* Retirer le style par défaut des liens */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================================
+       LAYOUT PRINCIPAL — Grid deux colonnes
+          On utilise CSS Grid pour positionner :
+          - Colonne gauche  : sidebar fixe (--sidebar-w)
+          - Colonne droite  : contenu principal qui remplit le reste
+       ============================================================ */
+    .page-wrapper {
+      display: grid;
+
+      /* 
+        grid-template-columns: [col1] [col2]
+        - var(--sidebar-w) = 340px fixe
+        - 1fr = "tout l'espace restant"
+      */
+      grid-template-columns: var(--sidebar-w) 1fr;
+
+      min-height: 100vh;
+      max-width: 1400px;
+      margin: 0 auto; /* centrer horizontalement */
+    }
+
+    /* ============================================================
+       4. SIDEBAR (colonne gauche)
+          position: sticky → elle reste visible pendant le scroll
+          height: 100vh    → elle occupe toute la hauteur de l'écran
+       ============================================================ */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+
+      /* Flexbox en colonne pour empiler les blocs verticalement */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* espace entre haut et bas */
+      padding: var(--gap-xl) var(--gap-lg);
+
+      background-color: var(--navy-mid);
+
+      /* Ligne subtile sur le bord droit */
+      border-right: 1px solid var(--slate-dark);
+    }
+
+    /* --- Partie haute de la sidebar : nom + titre + nav --- */
+    .sidebar__top { display: flex; flex-direction: column; gap: var(--gap-lg); }
+
+    /* Décoration : petit texte "monospace" avant le nom */
+    .sidebar__label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      color: var(--blue);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .sidebar__name {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 3vw, 2.4rem); /* taille fluide selon l'écran */
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+    }
+
+    /* Le prénom mis en avant avec la couleur accent */
+    .sidebar__name span {
+      color: var(--blue);
+      display: block;
+    }
+
+    .sidebar__role {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--slate);
+      letter-spacing: 1px;
+    }
+
+    /* Courte accroche sous le titre */
+    .sidebar__tagline {
+      font-size: 0.82rem;
+      color: var(--slate);
+      max-width: 260px;
+      line-height: 1.7;
+      /* Guillemet stylisé devant */
+      padding-left: 0.8rem;
+      border-left: 2px solid var(--blue);
+    }
+
+    /* ============================================================
+       NAVIGATION ANCRES (dans la sidebar)
+           Les liens pointent vers des id dans le <main>
+       ============================================================ */
+    .nav { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .nav__item {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-md);
+      padding: 0.5rem 0;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      cursor: pointer;
+      transition: var(--transition);
+
+      /* La ligne horizontale = un pseudo-element ::before */
+      /* Elle s'agrandit au hover via width */
+    }
+
+    /* Ligne décorative avant chaque item de nav */
+    .nav__item::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background-color: var(--slate-dark);
+      transition: var(--transition);
+    }
+
+    /* Au survol : la ligne s'allonge et le texte devient blanc */
+    .nav__item:hover {
+      color: var(--white);
+    }
+    .nav__item:hover::before {
+      width: 50px;
+      background-color: var(--blue);
+    }
+
+    /* ============================================================
+       RÉSEAUX SOCIAUX (bas de la sidebar)
+       ============================================================ */
+    .sidebar__bottom { display: flex; flex-direction: column; gap: var(--gap-md); }
+
+    /* Email cliquable */
+    .sidebar__email {
+      font-size: 0.75rem;
+      color: var(--slate);
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+    .sidebar__email:hover { color: var(--blue); }
+
+    /* Icônes SVG des réseaux en ligne */
+    .socials {
+      display: flex;
+      gap: var(--gap-md);
+    }
+
+    .socials__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      color: var(--slate);
+      border: 1px solid var(--slate-dark);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    /* Au hover : fond légèrement éclairé + couleur accent */
+    .socials__link:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+      background-color: rgba(100, 255, 218, 0.07);
+      transform: translateY(-2px); /* légère élévation */
+    }
+
+    .socials__link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor; /* hérite de la couleur du parent */
+    }
+
+    /* ============================================================
+       CONTENU PRINCIPAL (colonne droite, scrollable)
+       ============================================================ */
+    .main-content {
+      padding: var(--gap-xl) calc(var(--gap-xl) + var(--gap-md));
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--gap-xl) * 1.5); /* grand espace entre sections */
+    }
+
+    /* ============================================================
+       SECTIONS — Structure commune
+          Chaque section a :
+          - Un titre avec numérotation stylisée
+          - Un séparateur horizontal
+          - Son contenu spécifique
+       ============================================================ */
+    .section { display: flex; flex-direction: column; gap: var(--gap-lg); }
+
+    /* En-tête de section : numéro + titre + ligne */
+    .section__header {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-md);
+    }
+
+    /* Numéro décoratif avant le titre (ex : "01.") */
+    .section__number {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .section__title {
+      font-family: var(--font-title);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* Ligne horizontale qui remplit le reste de la largeur */
+    .section__line {
+      flex: 1;         /* prend tout l'espace disponible */
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        var(--slate-dark),
+        transparent
+      );
+    }
+
+    /* ============================================================
+       SECTION ABOUT
+       ============================================================ */
+    .about__text {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.9;
+      max-width: 600px;
+    }
+
+    /* Mise en valeur des mots importants dans le texte */
+    .about__text strong {
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    /*Image de la section about*/
+    .about__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+
+    /* Au survol : la carte s'illumine */
+    .about__img:hover{
+      background-color: var(--navy-light);
+      border-color: var(--slate-dark);
+    }
+
+    /* ============================================================
+       SECTION EXPERIENCE
+          Chaque job = une carte .experience__item
+       ============================================================ */
+    .experience__list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+    }
+
+    /* Carte de job */
+    .experience__item {
+      display: grid;
+      /* 
+        2 colonnes :
+        - 100px pour la date (fixe)
+        - 1fr pour le contenu (flexible)
+      */
+      grid-template-columns: 100px 1fr;
+      gap: var(--gap-md);
+      padding: var(--gap-md) var(--gap-md);
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    /* Au survol : la carte s'illumine */
+    .experience__item:hover {
+      background-color: var(--navy-light);
+      border-color: var(--slate-dark);
+    }
+
+    /* Colonne "date" */
+    .experience__date {
+      font-size: 0.7rem;
+      color: var(--slate-dark);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* Titre du poste */
+    .experience__role {
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+      transition: var(--transition);
+    }
+
+    /* Au hover sur le role : couleur accent */
+    .experience__item:hover .experience__role {
+      color: var(--blue);
+    }
+
+    /* Entreprise */
+    .experience__company {
+      font-size: 0.82rem;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
+      opacity: 0.8;
+    }
+
+    /* Description du poste */
+    .experience__desc {
+      font-size: 0.82rem;
+      color: var(--slate);
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Tags de technologies */
+    .tags {
+      display: flex;
+      flex-wrap: wrap; /* va à la ligne si ça déborde */
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      color: var(--blue);
+      background-color: rgba(100, 149, 255, 0.1); /* fond très transparent */
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      border: 1px solid rgba(100, 159, 255, 0.2);
+      letter-spacing: 0.5px;
+    }
+
+    /* ============================================================
+       SECTION PROJECTS
+          Grille responsive de cartes projets
+       ============================================================ */
+    .projects__grid {
+      display: grid;
+      /*
+        auto-fill = crée autant de colonnes que possible
+        minmax(260px, 1fr) = chaque colonne fait min 260px, max 1fr
+        → responsive sans media query !
+      */
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--gap-md);
+    }
+
+    /* Carte projet */
+    .project__card {
+      background-color: var(--navy-light);
+      border: 1px solid var(--slate-dark);
+      border-radius: 8px;
+      padding: var(--gap-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-sm);
+      transition: var(--transition);
+      cursor: default;
+    }
+
+    /* Au hover : la carte "remonte" légèrement */
+    .project__card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Icône en haut de chaque carte */
+    .project__icon {
+      color: var(--blue);
+      margin-bottom: var(--gap-sm);
+    }
+    .project__icon svg { width: 28px; height: 28px; fill: currentColor; }
+
+    .project__title {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: var(--transition);
+    }
+    .project__card:hover .project__title { color: var(--blue); }
+
+    .project__desc {
+      font-size: 0.8rem;
+      color: var(--slate);
+      line-height: 1.7;
+      flex: 1; /* pousse les tags vers le bas */
+    }
+
+    /* ============================================================
+       SECTION SKILLS
+           Grille de catégories de compétences
+       ============================================================ */
+    .skills__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--gap-md);
+    }
+
+    /* Bloc de compétences par catégorie */
+    .skill__category {
+      background-color: var(--navy-light);
+      border: 1px solid var(--slate-dark);
+      border-radius: 6px;
+      padding: var(--gap-md) var(--gap-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-sm);
+      transition: var(--transition);
+    }
+
+    .skill__category:hover { border-color: var(--blue); }
+
+    .skill__category-title {
+      font-size: 0.72rem;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    /* Liste des items de compétence */
+    .skill__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .skill__item {
+      font-size: 0.8rem;
+      color: var(--slate);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Puce décorative avant chaque skill */
+    .skill__item::before {
+      content: '▹';
+      color: var(--blue);
+      font-size: 0.7rem;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      padding-bottom: var(--gap-xl);
+      font-size: 0.75rem;
+      color: var(--slate-dark);
+      line-height: 1.8;
+    }
+
+    .footer span { color: var(--blue); }
+
+    /*
+        Prochaine modification à prévoir l'ajout du responsive et d'animation
+    */

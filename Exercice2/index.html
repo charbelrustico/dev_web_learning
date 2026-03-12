@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - RUSTICO Charbel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="rsc/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- 
+        PAGE WRAPPER
+        Ce div est le conteneur principal qui crée le layout grid 2 colonnes.
+    -->
+    <div class="page-wrapper">
+
+        <!-- ============================================================
+            SIDEBAR GAUCHE (fixe pendant le scroll)
+            ============================================================ -->
+        <header class="sidebar">
+
+        <!-- Partie haute : identité + navigation -->
+        <div class="sidebar__top">
+
+            <!-- Petit label décoratif style "commentaire de code" -->
+            <span class="sidebar__label">// portfolio.dev</span>
+
+            <!-- Nom complet — le prénom est mis en accent bleu -->
+            <div>
+            <h1 class="sidebar__name">
+                <span>Charbel</span>RUSTICO
+            </h1>
+            <!-- Titre professionnel -->
+            <p class="sidebar__role">Développeur Fullstack Junior</p>
+            </div>
+
+            <!-- Accroche courte -->
+            <p class="sidebar__tagline">
+            Je construis des applications web modernes et des solutions embarquées. Basé à Abomey-Calavi, Bénin.
+            </p>
+
+            <!-- Navigation par ancres : chaque lien pointe vers un id dans le main -->
+            <nav class="nav" aria-label="Navigation principale">
+            <!-- href="#about" → scrolle jusqu'à <section id="about"> -->
+            <a href="#about"      class="nav__item">À propos</a>
+            <a href="#experience" class="nav__item">Expérience</a>
+            <a href="#projects"   class="nav__item">Projets</a>
+            <a href="#skills"     class="nav__item">Compétences</a>
+            </nav>
+
+        </div><!-- /sidebar__top -->
+
+        <!-- Partie basse : email + icônes réseaux -->
+        <div class="sidebar__bottom">
+
+            <!-- Email en clair cliquable (mailto: ouvre le client mail) -->
+            <a href="mailto:charbelrustico@email.com" class="sidebar__email">
+            charbelrustico@email.com
+            </a>
+
+            <!-- Liens réseaux sociaux avec icônes SVG inline -->
+            <div class="socials" aria-label="Réseaux sociaux">
+
+            <!-- GitHub -->
+            <a href="https://github.com/charbelrustico"
+                class="socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub">
+                <!-- SVG = icône vectorielle, scale parfaitement à toute taille -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/charbel-rustico-5aa0063ab"
+                class="socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+
+            <!-- Bento (lien portfolio) -->
+            <a href="https://bento.me/charbelrustico"
+                class="socials__link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bento">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+            </a>
+
+            </div><!-- /socials -->
+
+        </div><!-- /sidebar__bottom -->
+
+        </header><!-- /sidebar -->
+
+
+        <!-- ============================================================
+            CONTENU PRINCIPAL (scrollable, colonne droite)
+            ============================================================ -->
+        <main class="main-content">
+
+
+        <!-- ==========================================
+            SECTION 1 : À PROPOS
+            id="about" → lié au lien href="#about" dans la nav
+            ========================================== -->
+        <section id="about" class="section">
+
+            <!-- En-tête de section -->
+            <div class="section__header">
+            <span class="section__number">01.</span>
+            <h2 class="section__title">À propos</h2>
+            <div class="section__line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Texte de présentation -->
+            <div class="about__text">
+                <p>
+                    Je suis un développeur web <strong>fullstack junior</strong> passionné par la création d'expériences numériques soignées et fonctionnelles. Basé à <strong>Abomey-Calavi, Bénin</strong>, je travaille chez <strong>Hibiscus Corporate</strong> où je conçois et développe des applications web modernes.
+                </p>
+                <br />
+                <p>
+                    Diplomé d'un DT en Installation et Maintenance Informatique, j'ai une connaissance profonde de l'ordinateur et des réseaux informatiques. Au travers de stage, je démarre mon parcours avec le développement web en passant par du <strong>Next.js</strong> et <strong>Laravel</strong> jusqu'à la programmation embarquée avec <strong>Arduino</strong> — j'aime comprendre comment les systèmes fonctionnent de bout en bout. J'aborde chaque nouveau projet comme une opportunité d'apprendre une technologie ou un pattern que je ne maîtrise pas encore.
+                </p>
+                <br />
+                <p>
+                    Actuellement, je suis en première année dans un cursus de <strong>Licence en IA</strong> à l'<strong>ESCAE Benin</strong>. Ainsi j'explore les <strong> maths statistisques</strong> et la <strong>probabilité</strong> avant de démarrer le <strong>marchine learning</strong>, la <strong>cybersécurité</strong>. J'ai pour projet de développer un logiciel <strong>cross-platform</strong> avec C# et .NET MAUI, où je fais des recherches sur la construction d'architecture logicielle MVVM, mais je galère encore 😁😎.
+                </p>
+            </div>
+            <figure>
+                <img class="about__img" src="rsc/image (2).jpg" alt="Moi en train de coder 💻" srcset="">
+                <figcaption>Moi en train de coder 💻😎 - Généré avec Nano Banana</figcaption>
+            </figure>
+
+            <!-- redirection vers la page -->
+            <br>
+            <p><strong><a href="liste.html" target="_blank" rel="noopener noreferrer">Cliquez ici</a></strong> pour accéder à la liste de présence au dernier cours de développement web</p>
+
+        </section><!-- /about -->
+
+
+        <!-- ==========================================
+            SECTION 2 : EXPÉRIENCE
+            ========================================== -->
+        <section id="experience" class="section">
+
+            <div class="section__header">
+            <span class="section__number">02.</span>
+            <h2 class="section__title">Expérience</h2>
+            <div class="section__line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Liste des jobs -->
+            <div class="experience__list">
+
+            <!-- Job 1 -->
+            <div class="experience__item">
+
+                <!-- Dates (colonne gauche du sous-grid) -->
+                <div class="experience__date">
+                2026
+                </div>
+
+                <!-- Contenu du job (colonne droite) -->
+                <div>
+                <h3 class="experience__role">Développeur Web</h3>
+                <p class="experience__company">Abiba Braids · Cococtomey, Bénin</p>
+                <p class="experience__desc">
+                    Boutique ecommerce de réservation en ligne pour un Salon de coiffure. Style luxueux, expérience utilisateur et parcours d'achat optimisé.
+                </p>
+                <!-- Technologies utilisées -->
+                <div class="tags">
+                    <span class="tag">Woocommerce</span>
+                    <span class="tag">Wordpress</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">CSS</span>
+                </div>
+                </div>
+
+            </div><!-- /experience__item -->
+
+            <!-- Job 2 -->
+            <div class="experience__item">
+
+                <!-- Dates (colonne gauche du sous-grid) -->
+                <div class="experience__date">
+                2025<br/>— Présent
+                </div>
+
+                <!-- Contenu du job (colonne droite) -->
+                <div>
+                <h3 class="experience__role">Développeur Web</h3>
+                <p class="experience__company">Hibiscus Corporate · Cotonou, Bénin</p>
+                <p class="experience__desc">
+                    Développement et maintenance d'applications web pour des clients de l'agence. Conception de l'architecture frontend et backend, intégration d'APIs, et collaboration avec l'équipe design pour livrer des interfaces pixel-perfect.
+                </p>
+                <!-- Technologies utilisées -->
+                <div class="tags">
+                    <span class="tag">Next.js</span>
+                    <span class="tag">Laravel</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">CSS</span>
+                </div>
+                </div>
+
+            </div><!-- /experience__item -->
+
+            <!-- Job 3-->
+            <div class="experience__item">
+                <div class="experience__date">
+                2024<br/>— 2025
+                </div>
+                <div>
+                    <h3 class="experience__role">Mini Développeur IoT et Web</h3>
+                    <p class="experience__company">Lycée StBarthelemy · Abomey-Calavi, Bénin</p>
+                    <p class="experience__desc">
+                        Réalisation de projets personnels et académiques couvrant la programmation embarquée. Conception et construction de robots contrôlés via Bluetooth et de systèmes de domotique miniature. Conception d'un site web pour le lycée pour fêter ces 10 ans.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">C</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Job 4-->
+            <div class="experience__item">
+                <div class="experience__date">
+                <br/>2024
+                </div>
+                <div>
+                    <h3 class="experience__role">Développeur Freelance - Natutropik</h3>
+                    <p class="experience__company">Indépendant · Cotonou, Bénin</p>
+                    <p class="experience__desc">
+                        Conception d'une boutique Ecommerce sur Wordpress, pour Natutropik une société agroalimentaire qui vend des épices. 
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Elementor</span>
+                        <span class="tag">Woocommerce</span>
+                        <span class="tag">PHP/JS</span>
+                        <span class="tag">Wordpress</span>
+                    </div>
+                </div>
+            </div>
+            </div><!-- /experience__list -->
+
+        </section><!-- /experience -->
+
+
+        <!-- ==========================================
+            SECTION 3 : PROJETS
+            ========================================== -->
+        <section id="projects" class="section">
+
+            <div class="section__header">
+            <span class="section__number">03.</span>
+            <h2 class="section__title">Projets</h2>
+            <div class="section__line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Grille de cartes projets -->
+            <div class="projects__grid">
+
+            <!-- Projet 1 : Western Agency -->
+            <div class="project__card">
+                <div class="project__icon">
+                <!-- Icône "dossier" SVG -->
+                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z"/></svg>
+                </div>
+                <h3 class="project__title">Western Agency</h3>
+                <p class="project__desc">
+                Application web fullstack pour une agence. Architecture moderne avec Next.js côté frontend et Laravel comme API backend REST.
+                </p>
+                <div class="tags">
+                <span class="tag">Next.js</span>
+                <span class="tag">Laravel</span>
+                <span class="tag">PHP</span>
+                </div>
+            </div>
+
+            <!-- Projet 2 : Meeting App -->
+            <div class="project__card">
+                <div class="project__icon">
+                <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+                </div>
+                <h3 class="project__title">Meeting App</h3>
+                <p class="project__desc">
+                Application de réunion vidéo en ligne intégrant Agora App Builder pour la communication audio/vidéo en temps réel.
+                </p>
+                <div class="tags">
+                <span class="tag">Agora SDK</span>
+                <span class="tag">JavaScript</span>
+                </div>
+            </div>
+
+            <!-- Projet 3 : Robot Bluetooth -->
+            <div class="project__card">
+                <div class="project__icon">
+                <svg viewBox="0 0 24 24"><path d="M20 9V7c0-1.1-.9-2-2-2h-3V3h-2v2H9V3H7v2H4c-1.1 0-2 .9-2 2v2H0v2h2v2H0v2h2v2c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2V9h-2zm-2 9H6V7h12v11z"/></svg>
+                </div>
+                <h3 class="project__title">Robot Bluetooth Arduino</h3>
+                <p class="project__desc">
+                Robot mobile 4 roues contrôlé via Bluetooth (HC-05 + Arduino Uno). Pilotage des moteurs DC avec le driver L298N.
+                </p>
+                <div class="tags">
+                <span class="tag">C++</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Bluetooth</span>
+                </div>
+            </div>
+
+            <!-- Projet 4 : Smart RC Home -->
+            <div class="project__card">
+                <div class="project__icon">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </div>
+                <h3 class="project__title">Smart RC Home</h3>
+                <p class="project__desc">
+                Système de domotique miniature contrôlé par Bluetooth : ventilation (relais 12V), éclairage LED et accès par servomoteur.
+                </p>
+                <div class="tags">
+                <span class="tag">C++</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">IoT</span>
+                </div>
+            </div>
+
+            <!-- Projet 5 : Roadmap Dev Web -->
+            <div class="project__card">
+                <div class="project__icon">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                </div>
+                <h3 class="project__title">My Roadmap Dev Web</h3>
+                <p class="project__desc">
+                Roadmap personnelle de développement web documentant le parcours d'apprentissage, les ressources et les étapes clés.
+                </p>
+                <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">Documentation</span>
+                </div>
+            </div>
+
+            <!-- Projet 6 : MyCodeAcademia -->
+            <div class="project__card">
+                <div class="project__icon">
+                <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+                </div>
+                <h3 class="project__title">MyCodeAcademia</h3>
+                <p class="project__desc">
+                Dépôt de projets académiques en programmation C — exercices d'algorithmique, structures de données et travaux pratiques.
+                </p>
+                <div class="tags">
+                <span class="tag">C</span>
+                <span class="tag">Algorithmique</span>
+                </div>
+            </div>
+
+            </div><!-- /projects__grid -->
+
+        </section><!-- /projects -->
+
+
+        <!-- ==========================================
+            SECTION 4 : COMPÉTENCES
+            ========================================== -->
+        <section id="skills" class="section">
+
+            <div class="section__header">
+            <span class="section__number">04.</span>
+            <h2 class="section__title">Compétences</h2>
+            <div class="section__line" aria-hidden="true"></div>
+            </div>
+
+            <!-- Grille de catégories -->
+            <div class="skills__grid">
+
+            <!-- Catégorie : Frontend -->
+            <div class="skill__category">
+                <span class="skill__category-title">Frontend</span>
+                <ul class="skill__list">
+                <li class="skill__item">HTML5 / CSS3</li>
+                <li class="skill__item">JavaScript (ES6+)</li>
+                <li class="skill__item">Next.js</li>
+                <li class="skill__item">React (en cours)</li>
+                </ul>
+            </div>
+
+            <!-- Catégorie : Backend -->
+            <div class="skill__category">
+                <span class="skill__category-title">Backend</span>
+                <ul class="skill__list">
+                <li class="skill__item">Laravel (PHP)</li>
+                <li class="skill__item">APIs REST</li>
+                <li class="skill__item">C# / .NET MAUI*</li>
+                <li class="skill__item">Node.js (bases)</li>
+                </ul>
+            </div>
+
+            <!-- Catégorie : Embarqué -->
+            <div class="skill__category">
+                <span class="skill__category-title">Embarqué</span>
+                <ul class="skill__list">
+                <li class="skill__item">Arduino / C++</li>
+                <li class="skill__item">Bluetooth HC-05</li>
+                <li class="skill__item">Driver L298N</li>
+                <li class="skill__item">Capteurs & actionneurs</li>
+                </ul>
+            </div>
+
+            <!-- Catégorie : Outils -->
+            <div class="skill__category">
+                <span class="skill__category-title">Outils & Méthodes</span>
+                <ul class="skill__list">
+                <li class="skill__item">Git / GitHub</li>
+                <li class="skill__item">Architecture MVVM*</li>
+                <li class="skill__item">VS Code</li>
+                <li class="skill__item">Responsive Design</li>
+                </ul>
+            </div>
+
+            <!-- Catégorie : Langues -->
+            <div class="skill__category">
+                <span class="skill__category-title">Langues</span>
+                <ul class="skill__list">
+                <li class="skill__item">Français (natif)</li>
+                <li class="skill__item">Anglais (technique)</li>
+                </ul>
+            </div>
+
+            </div><!-- /skills__grid -->
+
+            <!-- Légende pour les compétences en cours d'apprentissage -->
+            <p style="font-size: 0.72rem; color: var(--slate-dark); margin-top: 0.5rem;">
+            * En cours d'apprentissage
+            </p>
+
+        </section><!-- /skills -->
+
+
+        <!-- ==========================================
+            FOOTER
+            ========================================== -->
+        <footer class="footer">
+            <p>
+            Conçu et développé par <span>Charbel RUSTICO</span>.
+            Inspiré de <span>brittanychiang.com</span>.
+            Codé avec HTML &amp; CSS pur.
+            </p>
+            <p style="margin-top: 0.3rem;">
+            <a href="https://github.com/charbelrustico" style="color: var(--blue); transition: opacity 0.2s;" 
+                onmouseover="this.style.opacity='0.7'" 
+                onmouseout="this.style.opacity='1'">
+                github.com/charbelrustico
+            </a>
+            </p>
+        </footer>
+
+        </main><!-- /main-content -->
+
+    </div><!-- /page-wrapper -->
+</body>
+</html>
